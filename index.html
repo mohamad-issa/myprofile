@@ -6,22 +6,22 @@
 <title>Mohamad Issa — Neuroengineer & Future Founder</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --navy: #0D1F3C;
-    --navy-mid: #1B3A6B;
-    --accent: #2563EB;
-    --accent-light: #DBEAFE;
-    --teal: #0D9488;
-    --off-white: #F8F7F4;
-    --warm-gray: #E8E5DF;
-    --text: #1A1A2E;
-    --muted: #6B7280;
+    --navy: #0D2B27;
+    --navy-mid: #134039;
+    --accent: #1A7A6E;
+    --accent-light: #D0F0EC;
+    --teal: #0FA392;
+    --off-white: #F4F6F5;
+    --warm-gray: #DDE6E4;
+    --text: #0D2B27;
+    --muted: #5C7C78;
     --serif: 'DM Serif Display', serif;
-    --sans: 'DM Sans', sans-serif;
+    --sans: 'Inter', sans-serif;
   }
 
   html { scroll-behavior: smooth; }
@@ -32,43 +32,85 @@
     color: var(--text);
     line-height: 1.6;
     overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
   }
 
-  /* ── HERO ── */
+  /* ── HERO (light) ── */
   .hero {
     min-height: 100vh;
-    background: var(--navy);
+    background: #FFFFFF;
     display: grid;
     grid-template-rows: 1fr auto;
     position: relative;
     overflow: hidden;
   }
 
+  /* Subtle grid background like the screenshot */
   .hero-bg {
     position: absolute;
     inset: 0;
-    background:
-      radial-gradient(ellipse 60% 50% at 80% 20%, rgba(37,99,235,0.18) 0%, transparent 60%),
-      radial-gradient(ellipse 40% 60% at 10% 80%, rgba(13,148,136,0.12) 0%, transparent 50%);
+    background-image:
+      linear-gradient(var(--warm-gray) 1px, transparent 1px),
+      linear-gradient(90deg, var(--warm-gray) 1px, transparent 1px);
+    background-size: 52px 52px;
+    opacity: 0.55;
     pointer-events: none;
   }
 
+  /* Soft teal glow top-right */
   .hero-grid-lines {
     position: absolute;
     inset: 0;
-    background-image:
-      linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
+    background:
+      radial-gradient(ellipse 55% 55% at 92% 8%, rgba(15,163,146,0.12) 0%, transparent 60%),
+      radial-gradient(ellipse 35% 45% at 5% 95%, rgba(26,122,110,0.07) 0%, transparent 55%);
     pointer-events: none;
   }
+
+  /* Nav-style top bar */
+  .hero-nav {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 48px;
+    z-index: 10;
+    opacity: 0;
+    animation: fadeUp 0.5s ease forwards 0s;
+  }
+
+  .hero-nav-logo {
+    font-family: var(--sans);
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.04em;
+    text-decoration: none;
+  }
+
+  .hero-nav-links {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+  }
+
+  .hero-nav-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+
+  .hero-nav-links a:hover { color: var(--navy); }
 
   .hero-content {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 80px 40px 40px;
-    max-width: 720px;
+    padding: 120px 48px 40px;
+    max-width: 860px;
     margin: 0 auto;
     width: 100%;
     position: relative;
@@ -76,75 +118,88 @@
   }
 
   .hero-eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
     font-family: var(--sans);
     font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.2em;
+    font-weight: 600;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
-    color: var(--teal);
-    margin-bottom: 24px;
+    color: var(--accent);
+    margin-bottom: 28px;
     opacity: 0;
-    animation: fadeUp 0.6s ease forwards 0.1s;
+    animation: fadeUp 0.6s ease forwards 0.15s;
+  }
+
+  .hero-eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 2px;
+    background: var(--accent);
+    border-radius: 2px;
   }
 
   .photo-placeholder {
-    width: 88px;
-    height: 88px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--navy-mid), var(--accent));
-    border: 2px solid rgba(255,255,255,0.15);
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--accent), 0 8px 24px rgba(26,122,110,0.18);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--serif);
-    font-size: 28px;
+    font-size: 24px;
     color: white;
     margin-bottom: 28px;
     opacity: 0;
     animation: fadeUp 0.6s ease forwards 0.2s;
-    /* SWAP: replace this with <img src="your-photo.jpg" style="width:88px;height:88px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.15);"> */
+    /* SWAP: replace with <img src="your-photo.jpg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 0 0 2px var(--accent),0 8px 24px rgba(26,122,110,0.18);margin-bottom:28px;"> */
   }
 
   .hero-name {
     font-family: var(--serif);
-    font-size: clamp(42px, 8vw, 72px);
-    color: white;
-    line-height: 1.05;
-    letter-spacing: -0.02em;
-    margin-bottom: 8px;
+    font-size: clamp(44px, 8vw, 76px);
+    color: var(--navy);
+    line-height: 1.0;
+    letter-spacing: -0.025em;
+    margin-bottom: 10px;
     opacity: 0;
     animation: fadeUp 0.6s ease forwards 0.3s;
   }
 
   .hero-name em {
     font-style: italic;
-    color: rgba(255,255,255,0.55);
+    color: var(--accent);
   }
 
   .hero-title {
     font-family: var(--sans);
-    font-size: clamp(14px, 3vw, 18px);
-    font-weight: 300;
-    color: rgba(255,255,255,0.6);
-    margin-bottom: 32px;
-    letter-spacing: 0.02em;
+    font-size: clamp(13px, 2.5vw, 16px);
+    font-weight: 400;
+    color: var(--muted);
+    margin-bottom: 36px;
+    letter-spacing: 0.01em;
     opacity: 0;
     animation: fadeUp 0.6s ease forwards 0.4s;
   }
 
   .hero-statement {
     font-family: var(--serif);
-    font-size: clamp(20px, 4vw, 30px);
-    color: white;
-    line-height: 1.35;
-    max-width: 580px;
-    margin-bottom: 44px;
+    font-size: clamp(20px, 3.5vw, 28px);
+    color: var(--navy);
+    line-height: 1.4;
+    max-width: 620px;
+    margin-bottom: 48px;
     opacity: 0;
     animation: fadeUp 0.6s ease forwards 0.5s;
   }
 
   .hero-statement span {
-    color: var(--teal);
+    color: var(--accent);
     font-style: italic;
   }
 
@@ -161,7 +216,7 @@
     align-items: center;
     gap: 8px;
     padding: 12px 24px;
-    border-radius: 6px;
+    border-radius: 8px;
     font-family: var(--sans);
     font-size: 14px;
     font-weight: 500;
@@ -174,15 +229,24 @@
   .btn-primary {
     background: var(--accent);
     color: white;
+    box-shadow: 0 4px 16px rgba(26,122,110,0.25);
   }
-  .btn-primary:hover { background: #1D4ED8; transform: translateY(-1px); }
+  .btn-primary:hover { background: #156358; transform: translateY(-2px); box-shadow: 0 6px 20px rgba(26,122,110,0.35); }
 
   .btn-outline {
     background: transparent;
-    color: white;
-    border: 1px solid rgba(255,255,255,0.25);
+    color: var(--navy);
+    border: 1.5px solid var(--warm-gray);
   }
-  .btn-outline:hover { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.5); }
+  .btn-outline:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-light); }
+
+  /* CV button variant */
+  .btn-cv {
+    background: var(--off-white);
+    color: var(--navy);
+    border: 1.5px solid var(--warm-gray);
+  }
+  .btn-cv:hover { border-color: var(--accent); color: var(--accent); }
 
   .hero-scroll {
     padding: 32px 40px;
@@ -199,22 +263,106 @@
     flex-direction: column;
     align-items: center;
     gap: 6px;
-    color: rgba(255,255,255,0.3);
-    font-size: 11px;
-    letter-spacing: 0.1em;
+    color: var(--muted);
+    font-size: 10px;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
   }
 
   .scroll-line {
     width: 1px;
     height: 32px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.3), transparent);
+    background: linear-gradient(to bottom, var(--accent), transparent);
     animation: scrollPulse 2s ease infinite;
+  }
+
+  /* ── CV / PDF SECTION ── */
+  .cv-section {
+    background: var(--off-white);
+    padding: 80px 40px;
+    border-top: 1px solid var(--warm-gray);
+  }
+
+  .cv-inner {
+    max-width: 860px;
+    margin: 0 auto;
+  }
+
+  .cv-header {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .cv-viewer {
+    width: 100%;
+    height: 780px;
+    border: 1px solid var(--warm-gray);
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 4px 24px rgba(13,43,39,0.07);
+    position: relative;
+  }
+
+  .cv-viewer iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+    display: block;
+  }
+
+  .cv-fallback {
+    display: none;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 16px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .cv-placeholder-msg {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    gap: 16px;
+    color: var(--muted);
+    font-size: 14px;
+    text-align: center;
+    padding: 40px;
+  }
+
+  .cv-placeholder-icon {
+    width: 56px;
+    height: 56px;
+    background: var(--accent-light);
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  @media (max-width: 600px) {
+    .hero-nav { padding: 16px 24px; }
+    .hero-nav-links { display: none; }
+    .cv-viewer { height: 520px; }
+    .hero-content { padding: 100px 24px 40px; }
   }
 
   /* ── STATS BAR ── */
   .stats-bar {
-    background: var(--navy-mid);
+    background: white;
+    border-top: 1px solid var(--warm-gray);
+    border-bottom: 1px solid var(--warm-gray);
     padding: 20px 40px;
     display: flex;
     justify-content: center;
@@ -226,23 +374,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 12px 32px;
-    border-right: 1px solid rgba(255,255,255,0.1);
+    padding: 12px 36px;
+    border-right: 1px solid var(--warm-gray);
   }
 
   .stat-item:last-child { border-right: none; }
 
   .stat-num {
     font-family: var(--serif);
-    font-size: 28px;
-    color: white;
+    font-size: 26px;
+    color: var(--navy);
     line-height: 1;
     margin-bottom: 4px;
   }
 
   .stat-label {
     font-size: 11px;
-    color: rgba(255,255,255,0.45);
+    color: var(--muted);
     letter-spacing: 0.08em;
     text-transform: uppercase;
   }
@@ -440,7 +588,7 @@
     content: '';
     position: absolute;
     inset: 0;
-    background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(13,148,136,0.15) 0%, transparent 60%);
+    background: radial-gradient(ellipse 50% 80% at 90% 50%, rgba(15,163,146,0.18) 0%, transparent 60%);
     pointer-events: none;
   }
 
@@ -605,7 +753,6 @@
 
   /* ── MOBILE ── */
   @media (max-width: 600px) {
-    .hero-content { padding: 60px 24px 32px; }
     section { padding: 60px 24px; }
     .stats-bar { padding: 16px 20px; }
     .stat-item { padding: 10px 16px; }
@@ -613,6 +760,7 @@
     .contact-section { padding: 60px 24px; }
     .vision-section { padding: 60px 24px; }
     .triathlon-section { padding: 60px 24px; }
+    .cv-section { padding: 60px 24px; }
   }
 </style>
 </head>
@@ -622,12 +770,24 @@
 <div class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid-lines"></div>
+
+  <!-- Nav -->
+  <nav class="hero-nav">
+    <a href="#" class="hero-nav-logo">Mohamad Issa</a>
+    <ul class="hero-nav-links">
+      <li><a href="#work">Experience</a></li>
+      <li><a href="#research">Research</a></li>
+      <li><a href="#cv">CV</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
   <div class="hero-content">
     <p class="hero-eyebrow">Munich · Neurotech · Future Founder</p>
 
     <!-- PHOTO: swap the div below for your actual photo -->
     <div class="photo-placeholder" aria-hidden="true">MI</div>
-    <!-- <img src="photo.jpg" alt="Mohamad Issa" style="width:88px;height:88px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,0.15);margin-bottom:28px;"> -->
+    <!-- <img src="photo.jpg" alt="Mohamad Issa" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 0 0 2px var(--accent),0 8px 24px rgba(26,122,110,0.18);margin-bottom:28px;"> -->
 
     <h1 class="hero-name">Mohamad <em>Issa</em></h1>
     <p class="hero-title">M.Sc. Neuroengineering · TUM &nbsp;·&nbsp; IEEE Researcher &nbsp;·&nbsp; BCI Engineer</p>
@@ -642,7 +802,11 @@
         <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
         Get in touch
       </a>
-      <a href="https://linkedin.com/in/YOUR-PROFILE" target="_blank" class="btn btn-outline">
+      <a href="#cv" class="btn btn-outline">
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        View CV
+      </a>
+      <a href="https://linkedin.com/in/mohamad-issa" target="_blank" class="btn btn-outline">
         <svg width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
         LinkedIn
       </a>
@@ -660,11 +824,11 @@
 <!-- STATS BAR -->
 <div class="stats-bar">
   <div class="stat-item">
-    <span class="stat-num">6+</span>
+    <span class="stat-num">3+</span>
     <span class="stat-label">Years in Neurotech</span>
   </div>
   <div class="stat-item">
-    <span class="stat-num">3</span>
+    <span class="stat-num">2</span>
     <span class="stat-label">IEEE Publications</span>
   </div>
   <div class="stat-item">
@@ -681,7 +845,7 @@
 <section id="work">
   <p class="section-label">Experience</p>
   <h2 class="section-heading">From lab bench <em>to clinical tool</em></h2>
-  <p style="color:var(--muted);font-size:15px;line-height:1.7;max-width:560px;">I've spent 6+ years building at every layer of the neurotech stack — from fundamental neuroscience to shipped clinical software.</p>
+  <p style="color:var(--muted);font-size:15px;line-height:1.7;max-width:560px;">I've spent 3+ years building at every layer of the neurotech stack.</p>
 
   <div class="timeline">
     <div class="timeline-item">
@@ -755,7 +919,7 @@
     </div>
 
     <div class="pub-card" style="border-left-color:var(--teal);">
-      <span class="pub-venue" style="color:var(--teal);background:#CCFBF1;">Research Article · 2021</span>
+      <span class="pub-venue" style="color:var(--teal);background:#C0F4EE;">Research Article · 2021</span>
       <p class="pub-title">Motivation in Motor Rehabilitation — The Role of Gamification</p>
       <p class="pub-meta">M. Issa &nbsp;·&nbsp; TUM Brain Machine Interface Lab</p>
     </div>
@@ -808,11 +972,9 @@
     <h2 class="section-heading" style="color:var(--navy);">Endurance as <em>a philosophy</em></h2>
     <p style="color:var(--muted);font-size:15px;line-height:1.7;max-width:560px;margin-bottom:8px;">
       I'm a triathlete training for an Olympic triathlon and Ironman 70.3. 
-      Not for medals — because multi-sport endurance training demands the same skills 
+      I believe that multi-sport endurance training demands the same skills 
       I bring to research and entrepreneurship: disciplined long-term planning, 
-      tolerance for discomfort, and the ability to perform when already depleted. 
-      Each discipline exposes different weaknesses. Fixing them systematically is, 
-      frankly, applied engineering — on yourself.
+      tolerance for discomfort, and the ability to perform when already depleted.
     </p>
 
     <div class="sport-grid">
@@ -832,6 +994,48 @@
         <p class="sport-note">Finish when depleted</p>
       </div>
     </div>
+  </div>
+</div>
+
+<!-- CV / PDF VIEWER -->
+<div class="cv-section" id="cv">
+  <div class="cv-inner">
+    <div class="cv-header">
+      <div>
+        <p class="section-label">Curriculum Vitae</p>
+        <h2 class="section-heading" style="margin-bottom:0;">Full résumé <em>& credentials</em></h2>
+      </div>
+      <a href="Mohamad_Issa_CV.pdf" download class="btn btn-primary" style="flex-shrink:0;">
+        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        Download PDF
+      </a>
+    </div>
+
+    <div class="cv-viewer">
+      <!-- 
+        TO ACTIVATE: Replace "Mohamad_Issa_CV.pdf" with the path to your PDF file.
+        Upload the PDF to the same folder as index.html on GitHub Pages.
+        The iframe will render it natively in most desktop browsers.
+      -->
+      <iframe
+        src="Mohamad_Issa_CV.pdf"
+        title="Mohamad Issa — Curriculum Vitae"
+        loading="lazy"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
+      ></iframe>
+      <!-- Shown if PDF fails to load (e.g. file not yet uploaded) -->
+      <div class="cv-placeholder-msg" style="display:none;">
+        <div class="cv-placeholder-icon">
+          <svg width="28" height="28" fill="none" stroke="var(--accent)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
+        </div>
+        <p><strong>PDF not yet uploaded</strong><br>Place <code>Mohamad_Issa_CV.pdf</code> in the same folder as this page.</p>
+        <a href="Mohamad_Issa_CV.pdf" download class="btn btn-primary">Download CV</a>
+      </div>
+    </div>
+
+    <p style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center;">
+      Can't see the PDF? <a href="Mohamad_Issa_CV.pdf" download style="color:var(--accent);text-decoration:none;font-weight:500;">Download it directly →</a>
+    </p>
   </div>
 </div>
 
