@@ -141,23 +141,23 @@
     border-radius: 2px;
   }
 
-  .photo-placeholder {
+  .photo-container {
     width: 80px;
     height: 80px;
     border-radius: 50%;
-    background: linear-gradient(135deg, var(--accent-light), var(--accent));
     border: 3px solid white;
     box-shadow: 0 0 0 2px var(--accent), 0 8px 24px rgba(26,122,110,0.18);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--serif);
-    font-size: 24px;
-    color: white;
     margin-bottom: 28px;
     opacity: 0;
     animation: fadeUp 0.6s ease forwards 0.2s;
-    /* SWAP: replace with <img src="your-photo.jpg" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 0 0 2px var(--accent),0 8px 24px rgba(26,122,110,0.18);margin-bottom:28px;"> */
+    overflow: hidden;
+    background: linear-gradient(135deg, var(--accent-light), var(--accent));
+  }
+
+  .photo-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
   .hero-name {
@@ -785,9 +785,10 @@
   <div class="hero-content">
     <p class="hero-eyebrow">Munich · Neurotech · Future Founder</p>
 
-    <!-- PHOTO: swap the div below for your actual photo -->
-    <div class="photo-placeholder" aria-hidden="true">MI</div>
-    <!-- <img src="photo.jpg" alt="Mohamad Issa" style="width:80px;height:80px;border-radius:50%;object-fit:cover;border:3px solid white;box-shadow:0 0 0 2px var(--accent),0 8px 24px rgba(26,122,110,0.18);margin-bottom:28px;"> -->
+    <!-- PHOTO -->
+    <div class="photo-container">
+      <img src="resources/photo.jpg" alt="Mohamad Issa" />
+    </div>
 
     <h1 class="hero-name">Mohamad <em>Issa</em></h1>
     <p class="hero-title">M.Sc. Neuroengineering · TUM &nbsp;·&nbsp; IEEE Researcher &nbsp;·&nbsp; BCI Engineer</p>
@@ -799,11 +800,11 @@
 
     <div class="hero-cta">
       <a href="mailto:mohamad.i.ssa@outlook.com" class="btn btn-primary">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
         Get in touch
       </a>
       <a href="#cv" class="btn btn-outline">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/><polyline points="12,13 16,17 20,13"/></svg>
         View CV
       </a>
       <a href="https://linkedin.com/in/mohamad-issa" target="_blank" class="btn btn-outline">
@@ -854,7 +855,7 @@
         <p class="timeline-role">Research Assistant — Brain-Computer Interfaces</p>
         <p class="timeline-org">Brain Machine Interface Lab (ICS), TUM</p>
         <p class="timeline-date">2021 – 2023</p>
-        <p class="timeline-desc">Built EEG-controlled rehabilitation games for quadriplegic patients. Designed and ran user studies. Developed AR intervention for Neglect Syndrome from neuroscience principle to clinical tool.</p>
+        <p class="timeline-desc">Built EEG-controlled rehabilitation games for quadriplegic patients. Designed and ran user studies. Developed AR intervention for Neglect Syndrome from neuroscience principles.</p>
       </div>
     </div>
 
@@ -998,89 +999,45 @@
 </div>
 
 <!-- CV / PDF VIEWER -->
-<div class="cv-section" id="cv">
+<section id="cv" class="cv-section">
   <div class="cv-inner">
     <div class="cv-header">
-      <div>
-        <p class="section-label">Curriculum Vitae</p>
-        <h2 class="section-heading" style="margin-bottom:0;">Full résumé <em>& credentials</em></h2>
-      </div>
-      <a href="Mohamad_Issa_CV.pdf" download class="btn btn-primary" style="flex-shrink:0;">
-        <svg width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7,10 12,15 17,10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
-        Download PDF
-      </a>
+      <h2 class="section-heading">CV</h2>
+      <a href="resources/cv.pdf" download class="btn btn-outline">Download PDF</a>
     </div>
-
     <div class="cv-viewer">
-      <!-- 
-        TO ACTIVATE: Replace "Mohamad_Issa_CV.pdf" with the path to your PDF file.
-        Upload the PDF to the same folder as index.html on GitHub Pages.
-        The iframe will render it natively in most desktop browsers.
-      -->
-      <iframe
-        src="Mohamad_Issa_CV.pdf"
-        title="Mohamad Issa — Curriculum Vitae"
-        loading="lazy"
-        onerror="this.style.display='none';this.nextElementSibling.style.display='flex';"
-      ></iframe>
-      <!-- Shown if PDF fails to load (e.g. file not yet uploaded) -->
-      <div class="cv-placeholder-msg" style="display:none;">
-        <div class="cv-placeholder-icon">
-          <svg width="28" height="28" fill="none" stroke="var(--accent)" stroke-width="1.5" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14,2 14,8 20,8"/></svg>
-        </div>
-        <p><strong>PDF not yet uploaded</strong><br>Place <code>Mohamad_Issa_CV.pdf</code> in the same folder as this page.</p>
-        <a href="Mohamad_Issa_CV.pdf" download class="btn btn-primary">Download CV</a>
-      </div>
+      <iframe src="resources/cv.pdf" type="application/pdf"></iframe>
     </div>
-
-    <p style="font-size:12px;color:var(--muted);margin-top:12px;text-align:center;">
-      Can't see the PDF? <a href="Mohamad_Issa_CV.pdf" download style="color:var(--accent);text-decoration:none;font-weight:500;">Download it directly →</a>
-    </p>
   </div>
-</div>
+</section>
 
 <!-- CONTACT -->
-<div class="contact-section" id="contact">
+<section class="contact-section" id="contact">
   <div class="contact-inner">
     <div class="contact-left">
-      <p class="section-label">Contact</p>
-      <h2 class="section-heading" style="font-size:clamp(24px,4vw,36px);">Let's <em>connect</em></h2>
-      <p style="color:var(--muted);font-size:14px;line-height:1.7;max-width:340px;margin-bottom:8px;">
-        Whether you want to talk neurotech, startups, BCIs, or endurance training — I'm always up for a good conversation.
-      </p>
+      <h2 class="section-heading">Let's connect</h2>
       <div class="contact-links">
         <a href="mailto:mohamad.i.ssa@outlook.com" class="contact-link">
-          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
           mohamad.i.ssa@outlook.com
         </a>
-        <a href="https://www.linkedin.com/in/mohamad-issa/" target="_blank" class="contact-link">
+        <a href="https://linkedin.com/in/mohamad-issa" target="_blank" class="contact-link">
           <svg fill="currentColor" viewBox="0 0 24 24"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"/><circle cx="4" cy="4" r="2"/></svg>
-          LinkedIn — Mohamad Issa
+          LinkedIn
         </a>
       </div>
     </div>
-
-    <!-- QR placeholder — generate at qr-code-generator.com once your URL is live -->
     <div class="qr-placeholder">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.5"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="5" y="5" width="3" height="3" fill="var(--muted)" rx="0.5"/><rect x="16" y="5" width="3" height="3" fill="var(--muted)" rx="0.5"/><rect x="5" y="16" width="3" height="3" fill="var(--muted)" rx="0.5"/><path d="M14 14h2v2h-2zM18 14h2v2h-2zM14 18h2v2h-2zM18 18h2v2h-2z"/></svg>
-      <span>QR code — add after deploying</span>
+      <span style="font-size:12px;">QR Code</span>
+      <span style="font-size:10px;color:var(--muted);">Coming soon</span>
     </div>
   </div>
-</div>
+</section>
 
+<!-- FOOTER -->
 <footer>
-  <p>Mohamad Issa · Munich, Germany · M.Sc. Neuroengineering, TUM</p>
+  <p>&copy; 2024 Mohamad Issa. Built with intention.</p>
 </footer>
 
-<script>
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.15 });
-
-  document.querySelectorAll('.timeline-item').forEach((el, i) => {
-    el.style.transitionDelay = `${i * 0.08}s`;
-    observer.observe(el);
-  });
-</script>
 </body>
 </html>
